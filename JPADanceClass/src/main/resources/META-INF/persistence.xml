@@ -6,7 +6,7 @@
 	<persistence-unit name="JPADanceClass">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		
-		<class>com.skilldistillery.danceclass.entities.Class</class>
+		<class>com.skilldistillery.danceclass.entities.DanceClass</class>
 
 		<properties>
 			<property name="jakarta.persistence.jdbc.url"
