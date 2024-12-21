@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.danceclass.data.DanceClassDAO;
 import com.skilldistillery.danceclass.entities.DanceClass;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @Controller
@@ -28,6 +31,31 @@ public class DanceClassController {
 		DanceClass dc = classDao.findById(classId);
 		model.addAttribute("danceClass", dc);
 		return "classdetails";
+	}
+	
+	@RequestMapping(path="addClass.do", method = RequestMethod.POST)
+	public String addClass(Model model, DanceClass addedClass) {
+		DanceClass nClass = classDao.createClass(addedClass);
+		model.addAttribute("newClass", nClass);
+		return "result";
+	}
+	
+	@RequestMapping(path="updateClass.do", method = RequestMethod.POST)
+	public String updateClass(Model model,@RequestParam("classId") int classId, DanceClass updatedClass) {
+		DanceClass uClass = classDao.updateClass(classId, updatedClass);
+		model.addAttribute("updatedClass", uClass);
+		return "result";
+	}
+	
+	@RequestMapping(path="deleteClass.do", method = RequestMethod.POST)
+	public String deleteClass(Model model,@RequestParam("classId") int classId) {
+		boolean classDeleted = classDao.deleteById(classId);
+		if (classDeleted) {
+			return "result";			
+		}
+		else {
+			return "error";
+		}
 	}
 	
 }

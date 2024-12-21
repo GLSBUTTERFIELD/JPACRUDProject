@@ -31,15 +31,22 @@ public class DanceClassDAOImpl implements DanceClassDAO {
 	}
 
 	@Override
-	public DanceClass create(DanceClass newClass) {
+	public DanceClass createClass(DanceClass newClass) {
+		em.persist(newClass);
 		return newClass;
-//		return em.persist(newClass);
 	}
 
 	@Override
-	public DanceClass update(int classId, DanceClass updatedClass) {
+	public DanceClass updateClass(int classId, DanceClass updatedClass) {
 		DanceClass managedDanceClass = em.find(DanceClass.class, classId);
+		managedDanceClass.setDate(updatedClass.getDate());
 		managedDanceClass.setInstructor(updatedClass.getInstructor());
+		managedDanceClass.setType(updatedClass.getType());
+		managedDanceClass.setStartTime(updatedClass.getStartTime());
+		managedDanceClass.setWeekday(updatedClass.getWeekday());
+		managedDanceClass.setIntervals(updatedClass.getIntervals());
+		managedDanceClass.setLastUpdate(updatedClass.getLastUpdate());
+		managedDanceClass.setInstructorImageUrl(updatedClass.getInstructorImageUrl());
 		em.persist(managedDanceClass);
 		return managedDanceClass;
 	}
