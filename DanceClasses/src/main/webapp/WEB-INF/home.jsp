@@ -36,16 +36,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="cl" items="${classList}">
+				<c:forEach var="danceClass" items="${classList}">
 					<tr>
-						<td>${cl.id}</td>
-						<td>${cl.weekday} <fmt:parseDate value="${cl.date}"
+						<td>${danceClass.id}</td>
+						<td>${danceClass.weekday}<fmt:parseDate value="${danceClass.date}"
 								pattern="yyyy-MM-dd" var="parsedDate" type="date" /> <fmt:formatDate
 								value="${parsedDate}" var="newParsedDate" type="date"
-								pattern="MMMM d, yyyy"/>${newParsedDate}
-						<td>${cl.startTime}</td> 
-						<td>${cl.instructor}</td>
-						<td><a href="showClass.do?classId=${cl.id}">View Details</a></td>
+								pattern="MMMM d, yyyy" />${newParsedDate}
+						<td>${danceClass.startTime}</td>
+						<td>${danceClass.instructor}</td>
+						<td><button type="button" class="btn btn-outline-dark btn-small"> <a href="showClass.do?classId=${danceClass.id}">View Class</a></button>
+							<button type="button" class="btn btn-outline-dark btn-small"> <a href="updateClass.do?classId=${danceClass.id}">Update Class</a></button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
