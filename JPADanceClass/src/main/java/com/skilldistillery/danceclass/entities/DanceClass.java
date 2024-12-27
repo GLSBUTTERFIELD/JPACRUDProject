@@ -66,6 +66,7 @@ public class DanceClass {
 	}
 
 	public LocalTime getStartTime() {
+//		System.out.println("format1:" + startTime.toString());
 		return startTime;
 	}
 
