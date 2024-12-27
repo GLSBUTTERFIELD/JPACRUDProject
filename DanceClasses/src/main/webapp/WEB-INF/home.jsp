@@ -39,14 +39,25 @@
 				<c:forEach var="danceClass" items="${classList}">
 					<tr>
 						<td>${danceClass.id}</td>
-						<td>${danceClass.weekday}<fmt:parseDate value="${danceClass.date}"
-								pattern="yyyy-MM-dd" var="parsedDate" type="date" /> <fmt:formatDate
-								value="${parsedDate}" var="newParsedDate" type="date"
-								pattern="MMMM d, yyyy" />${newParsedDate}
-						<td>${danceClass.startTime}</td>
+						<td>${danceClass.weekday}<fmt:parseDate
+								value="${danceClass.date}" pattern="yyyy-MM-dd" var="parsedDate"
+								type="date" /> <fmt:formatDate value="${parsedDate}"
+								var="newParsedDate" type="date" pattern="MMMM d, yyyy" />${newParsedDate}</td>
+
+						<td><fmt:parseDate var="parsedTime" type="time"
+								value="${danceClass.startTime}" pattern="HH:mm" /> <fmt:formatDate
+								type="time" value="${parsedTime}" pattern="h:mm a"
+								var="formattedTime" />${formattedTime}</td>
+
 						<td>${danceClass.instructor}</td>
-						<td><button type="button" class="btn btn-outline-dark btn-small"> <a href="showClass.do?classId=${danceClass.id}">View Class</a></button>
-							<button type="button" class="btn btn-outline-dark btn-small"> <a href="updateClass.do?classId=${danceClass.id}">Update Class</a></button></td>
+						<td><button type="button"
+								class="btn btn-outline-dark btn-small">
+								<a href="showClass.do?classId=${danceClass.id}">View Class</a>
+							</button>
+							<button type="button" class="btn btn-outline-dark btn-small">
+								<a href="updateClass.do?classId=${danceClass.id}">Update
+									Class</a>
+							</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
