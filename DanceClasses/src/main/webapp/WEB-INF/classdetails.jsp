@@ -12,6 +12,9 @@
 <body>
 
 	<div class="container-fluid">
+		<p class=".fs-4">
+			<a href="home.do">Home</a>
+		</p>
 		<label>Class # ${danceClass.id}</label> ${danceClass.type } with
 		${danceClass.instructor} <br> ${danceClass.weekday}
 		<fmt:parseDate value="${danceClass.date}" pattern="yyyy-MM-dd"
@@ -20,16 +23,13 @@
 			pattern="MMMM d, yyyy" />${newParsedDate}
 		@ ${danceClass.startTime } <br> ${danceClass.intervals }
 		${danceClass.lastUpdate } <img alt="${danceClass.instructor} image"
-			src="${danceClass.instructorImageUrl}">
-
-
-
-
-<br><br><br><br><br>
+			src="${danceClass.instructorImageUrl}"> <br>
+		<br>
+		<br>
 		<button type="button" class="btn btn-outline-dark btn-small">
 			<a href="updateClass.do?classId=${danceClass.id}">Update Class</a>
 		</button>
-		
+
 	</div>
 	<jsp:include page="bootstrapFooter.jsp"></jsp:include>
 </body>

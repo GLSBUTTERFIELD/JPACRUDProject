@@ -28,6 +28,7 @@ public class DanceClassController {
 	public String showClass(Model model, @RequestParam("classId") int classId) {
 		DanceClass dc = classDao.findById(classId);
 		model.addAttribute("danceClass", dc);
+		System.out.println(model);
 		return "classdetails";
 	}
 

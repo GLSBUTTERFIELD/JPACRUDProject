@@ -12,19 +12,6 @@
 <body>
 	<div class="container-fluid">
 		<h1>Let's update a class!</h1>
-		<fmt:parseDate value="${classToUpdate.date}" pattern="yyyy-MM-dd"
-			var="parsedDate" type="date" />
-		<fmt:formatDate value="${parsedDate}" var="newParsedDate" type="date"
-			pattern="MMMM d, yyyy" />${newParsedDate}
-			
-			
-		
-
-
-
-
-
-
 		<form action="result.jsp" method="POST">
 			<label>Class # ${classToUpdate.id}</label> <br> <label
 				for="date">Date </label><input type="date" name="date"
@@ -46,10 +33,10 @@
 				<label for="type">Class Type </label> <input type="radio" name="type" value="SIGNATURE"
 				<c:if test="${classToUpdate.type == 'SIGNATURE'}"> checked </c:if> />
 			SIGNATURE <input type="radio" name="type" value="BODY"
-				<c:if test="${classToUpdate.type == 'BODY'}"> checked</c:if> /> BODY
+				<c:if test="${classToUpdate.type == 'BODY'}"> checked</c:if> /> BODY<br>
 				
 				
-				${classToUpdate.startTime} <br> ${classToUpdate.intervals }
+				${classToUpdate.startTime} <br> ${classToUpdate.intervals }<br>
 		${classToUpdate.lastUpdate }
 				
 				
@@ -60,7 +47,10 @@
 
 
 
-
+<fmt:parseDate value="${classToUpdate.date}" pattern="yyyy-MM-dd"
+			var="parsedDate" type="date" />
+		<fmt:formatDate value="${parsedDate}" var="newParsedDate" type="date"
+			pattern="MMMM d, yyyy" />${newParsedDate}
 
 
 	</div>
