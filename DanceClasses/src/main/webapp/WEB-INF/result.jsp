@@ -34,6 +34,8 @@
 		${updatedClass.lastUpdate } <img alt="${updatedClass.instructor} image"
 			src="${updatedClass.instructorImageUrl}">
 
+
+
 	</div>
 	<jsp:include page="bootstrapFooter.jsp"></jsp:include>
 

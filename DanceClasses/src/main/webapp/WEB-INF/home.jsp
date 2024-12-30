@@ -12,8 +12,11 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Get it girl!</h1>
+		<h1>Get it girl! <button type="button" class="btn btn-outline-dark btn-small">
+				<a href="addClass.do">Add a New Class</a>
+			</button></h1>
 		<div class="container">
+			
 			<form action="showClass.do" method="GET">
 				<div class="row">
 					<label class="form-label col-auto" for="classId">Class ID:</label>
@@ -55,7 +58,7 @@
 								<a href="showClass.do?classId=${danceClass.id}">View Class</a>
 							</button>
 							<button type="button" class="btn btn-outline-dark btn-small">
-								<a href="updateClass.do?classId=${danceClass.id}">Update
+								<a href="updateClass.do?classId=${danceClass.id}">Update or Delete
 									Class</a>
 							</button></td>
 					</tr>

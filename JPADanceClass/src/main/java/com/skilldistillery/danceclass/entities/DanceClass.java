@@ -27,8 +27,7 @@ public class DanceClass {
 	@Column(name = "start_time")
 	private LocalTime startTime;
 	private String weekday;
-	 @Column(name = "intervals")
-	    private String intervalsAsString;
+	private String intervals;
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
 	@Column(name = "instructor_image_url")
@@ -86,19 +85,19 @@ public class DanceClass {
 	}
 
 	public List<String> getIntervals() {
-		if (intervalsAsString == null || intervalsAsString.isEmpty()) {
+		if (intervals == null || intervals.isEmpty()) {
 			return new ArrayList<>();
 		}
-		String[] individualStrings = intervalsAsString.split(",");
+		String[] individualStrings = intervals.split(",");
 		List<String> intervals = new ArrayList<>(Arrays.asList(individualStrings));
 		return intervals;
 	}
 
 	public void setIntervals(List<String> intervals) {
 		if (intervals == null || intervals.isEmpty()) {
-			this.intervalsAsString = "";
+			this.intervals = "";
 		} else {
-			this.intervalsAsString = String.join(",", intervals);
+			this.intervals = String.join(",", intervals);
 		}
 	}
 
@@ -121,9 +120,8 @@ public class DanceClass {
 	@Override
 	public String toString() {
 		return "DanceClass [id=" + id + ", date=" + date + ", type=" + type + ", instructor=" + instructor
-				+ ", startTime=" + startTime + ", weekday=" + weekday + ", intervalsAsString=" + intervalsAsString
+				+ ", startTime=" + startTime + ", weekday=" + weekday + ", intervalsAsString=" + intervals
 				+ ", lastUpdate=" + lastUpdate + ", instructorImageUrl=" + instructorImageUrl + "]";
 	}
-
 
 }

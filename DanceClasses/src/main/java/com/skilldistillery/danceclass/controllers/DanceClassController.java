@@ -6,11 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.skilldistillery.danceclass.data.DanceClassDAO;
 import com.skilldistillery.danceclass.entities.DanceClass;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class DanceClassController {
@@ -32,13 +31,24 @@ public class DanceClassController {
 		return "classdetails";
 	}
 
+	@RequestMapping(path = "addClass.do", method = RequestMethod.GET)
+	public String navigateToAddClassJSP() {
+		return "addClass";
+	}
 	@RequestMapping(path = "addClass.do", method = RequestMethod.POST)
-	public String addClass(Model model, DanceClass addedClass) {
-		DanceClass nClass = classDao.createClass(addedClass);
-		model.addAttribute("newClass", nClass);
-		return "result";
+	public String addClass(Model model, DanceClass addedClass, RedirectAttributes redir) {
+		DanceClass newClass = classDao.createClass(addedClass);
+		redir.addFlashAttribute("newClass", newClass);
+		return "redirect:classAdded.do";
 	}
 
+	@RequestMapping(path = "classAdded.do", method = RequestMethod.GET)
+	public String classAdded(Model model) {
+		DanceClass newClass= (DanceClass)model.asMap().get("newClass");
+		model.addAttribute("newClass", newClass);
+		return "result";
+	}
+	
 	@RequestMapping(path = "updateClass.do", method = RequestMethod.GET)
 	public String navigateToUpdateClassJSP(Model model, @RequestParam("classId") int classId,
 			DanceClass classToUpdate) {

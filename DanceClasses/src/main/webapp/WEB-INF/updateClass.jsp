@@ -152,11 +152,11 @@
 				pattern="MMMM d, yyyy" />${newParsedDate}
 			@
 			<fmt:formatDate value="${parsedDate}" var="formattedTime" type="time"
-				pattern="h:mm a" />${formattedTime}
+				pattern="h:mm a" />${formattedTime}<br><br>
 			<br> <input type="submit" value="Submit Updates"/>
 			
 			<button type="button" class="btn btn-outline-dark btn-small">
-			<a href="results.do?classId=${classToUpdate.id}">Delete Class ${classToUpdate.id}</a>
+			<a href="deleteClass.do?classId=${classToUpdate.id}">Delete Class ${classToUpdate.id}</a>
 		</button>
 			
 
