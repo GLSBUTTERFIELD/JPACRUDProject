@@ -3,6 +3,9 @@ package com.skilldistillery.danceclass.entities;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,7 +27,8 @@ public class DanceClass {
 	@Column(name = "start_time")
 	private LocalTime startTime;
 	private String weekday;
-	private String intervals;
+	 @Column(name = "intervals")
+	    private String intervalsAsString;
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
 	@Column(name = "instructor_image_url")
@@ -66,7 +70,6 @@ public class DanceClass {
 	}
 
 	public LocalTime getStartTime() {
-//		System.out.println("format1:" + startTime.toString());
 		return startTime;
 	}
 
@@ -82,12 +85,21 @@ public class DanceClass {
 		this.weekday = weekday;
 	}
 
-	public String getIntervals() {
+	public List<String> getIntervals() {
+		if (intervalsAsString == null || intervalsAsString.isEmpty()) {
+			return new ArrayList<>();
+		}
+		String[] individualStrings = intervalsAsString.split(",");
+		List<String> intervals = new ArrayList<>(Arrays.asList(individualStrings));
 		return intervals;
 	}
 
-	public void setIntervals(String intervals) {
-		this.intervals = intervals;
+	public void setIntervals(List<String> intervals) {
+		if (intervals == null || intervals.isEmpty()) {
+			this.intervalsAsString = "";
+		} else {
+			this.intervalsAsString = String.join(",", intervals);
+		}
 	}
 
 	public LocalDateTime getLastUpdate() {
@@ -109,8 +121,9 @@ public class DanceClass {
 	@Override
 	public String toString() {
 		return "DanceClass [id=" + id + ", date=" + date + ", type=" + type + ", instructor=" + instructor
-				+ ", startTime=" + startTime + ", weekday=" + weekday + ", intervals=" + intervals + ", lastUpdate="
-				+ lastUpdate + ", instructorImageUrl=" + instructorImageUrl + "]";
+				+ ", startTime=" + startTime + ", weekday=" + weekday + ", intervalsAsString=" + intervalsAsString
+				+ ", lastUpdate=" + lastUpdate + ", instructorImageUrl=" + instructorImageUrl + "]";
 	}
+
 
 }

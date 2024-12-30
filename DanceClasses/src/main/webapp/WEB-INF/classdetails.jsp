@@ -41,7 +41,7 @@
 		<fmt:formatDate value="${parsedDate}" var="formattedTime" type="time"
 			pattern="h:mm a" />${formattedTime}<br>
 		<button type="button" class="btn btn-outline-dark btn-small">
-			<a href="updateClass.do?classId=${danceClass.id}">Update Class</a>
+			<a href="updateClass.do?classId=${danceClass.id}">Update or Delete Class</a>
 		</button>
 
 	</div>

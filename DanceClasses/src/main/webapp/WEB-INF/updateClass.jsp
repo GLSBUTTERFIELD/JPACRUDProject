@@ -15,6 +15,10 @@
 		<button type="button" class="btn btn-outline-dark btn-small">
 			<a href="home.do">Home</a>
 		</button>
+		<button type="button" class="btn btn-outline-dark btn-small">
+			<a href="showClass.do?classId=${classToUpdate.id}">Back</a>
+		</button>
+		
 		<br>
 		<form action="result.jsp" method="POST">
 			<label><strong>Class # ${classToUpdate.id}</strong></label> <br>
@@ -49,69 +53,42 @@
 				<c:if test="${classToUpdate.type == 'BODY'}"> checked</c:if> />
 			BODY<br> <label for="startTime"><strong>Start
 					Time: </strong></label> <input type="time" id="startTime" step="900"
-				value="${classToUpdate.startTime}" /> <br> <label
-				for="intervals"><strong>Intervals (select 2): </strong></label>
-			<div class="form-check-inline">
-				<input class="form-check-input" type="checkbox" value=""
-					id="flexCheckChecked"> <label class="form-check-label">legs</label>
-			</div>
-			<div class="form-check-inline">
-				<input class="form-check-input" type="checkbox" value=""
-					id="flexCheckChecked"> <label class="form-check-label">core</label>
-			</div>
-			<div class="form-check-inline">
-				<input class="form-check-input" type="checkbox" value=""
-					id="flexCheckChecked"> <label class="form-check-label">planks</label>
-			</div>
-			<div class="form-check-inline">
-				<input class="form-check-input" type="checkbox" value=""
-					id="flexCheckChecked"> <label class="form-check-label">arms</label>
-			</div>
-			<div class="form-check-inline">
-				<input class="form-check-input" type="checkbox" value=""
-					id="flexCheckChecked"> <label class="form-check-label">crunches</label>
-			</div>
-			<div class="form-check-inline">
-				<input class="form-check-input" type="checkbox" value=""
-					id="flexCheckChecked"> <label class="form-check-label">standing
-					sit ups</label>
-			</div>
-			<div class="form-check-inline">
-				<input class="form-check-input" type="checkbox" value=""
-					id="flexCheckChecked"> <label class="form-check-label">wall
-					sits</label>
-			</div>
-			<div class="form-check-inline">
-				<input class="form-check-input" type="checkbox" value=""
-					id="flexCheckChecked"> <label class="form-check-label">squats</label>
-			</div>
-			<div class="form-check-inline">
-				<input class="form-check-input" type="checkbox" value=""
-					id="flexCheckChecked"> <label class="form-check-label">glutes</label>
-			</div>
-			<div class="form-check-inline">
-				<input class="form-check-input" type="checkbox" value=""
-					id="flexCheckChecked"> <label class="form-check-label">all</label>
-			</div>
-
-			<div class="form-check-inline">
-				<input class="form-check-input" type="checkbox" id="flexCheckOther">
-				<label class="form-check-label" for="flexCheckOther">other</label>
-			</div>
-			<div class="form-check-inline">
-				<input type="text" class="form-control" id="otherText"
-					placeholder="Please specify">
-			</div>
-			
-			<div class="form-check-inline">
-				<input class="form-check-input" type="checkbox" id="flexCheckOther">
-				<label class="form-check-label" for="flexCheckOther">other</label>
-			</div>
-			<div class="form-check-inline">
-				<input type="text" class="form-control" id="otherText"
-					placeholder="Please specify">
-			</div>
-
+				value="${classToUpdate.startTime}" /> <br> 
+				<label for="intervals1"><strong>Interval 1: </strong></label><select>
+				<option value="arms"
+					<c:if test="${classToUpdate.intervals.get(0) == 'arms'}">selected</c:if>>arms</option>
+				<option value="chest"
+					<c:if test="${classToUpdate.intervals.get(0) == 'chest'}">selected</c:if>>chest</option>
+				<option value="back"
+					<c:if test="${classToUpdate.intervals.get(0) == 'back'}">selected</c:if>>back</option>
+				<option value="core"
+					<c:if test="${classToUpdate.intervals.get(0) == 'core'}">selected</c:if>>core</option>
+				<option value="glutes"
+					<c:if test="${classToUpdate.intervals.get(0) == 'glutes'}">selected</c:if>>glutes</option>
+				<option value="legs"
+					<c:if test="${classToUpdate.intervals.get(0) == 'legs'}">selected</c:if>>legs</option>
+				<option value="all"
+					<c:if test="${classToUpdate.intervals.get(0) == 'all'}">selected</c:if>>all</option>
+				<option value="other"
+					<c:if test="${classToUpdate.intervals.get(0) == 'other'}">selected</c:if>>other</option></select>
+				
+			<label for="intervals2"><strong>Interval 2: </strong></label><select>
+				<option value="arms"
+					<c:if test="${classToUpdate.intervals.get(1) == 'arms'}">selected</c:if>>arms</option>
+				<option value="chest"
+					<c:if test="${classToUpdate.intervals.get(1) == 'chest'}">selected</c:if>>chest</option>
+				<option value="back"
+					<c:if test="${classToUpdate.intervals.get(1) == 'back'}">selected</c:if>>back</option>
+				<option value="core"
+					<c:if test="${classToUpdate.intervals.get(1) == 'core'}">selected</c:if>>core</option>
+				<option value="glutes"
+					<c:if test="${classToUpdate.intervals.get(1) == 'glutes'}">selected</c:if>>glutes</option>
+				<option value="legs"
+					<c:if test="${classToUpdate.intervals.get(1) == 'legs'}">selected</c:if>>legs</option>
+				<option value="all"
+					<c:if test="${classToUpdate.intervals.get(1) == 'all'}">selected</c:if>>all</option>
+				<option value="other"
+					<c:if test="${classToUpdate.intervals.get(1) == 'other'}">selected</c:if>>other</option></select>
 			<br>
 
 
@@ -176,7 +153,12 @@
 			@
 			<fmt:formatDate value="${parsedDate}" var="formattedTime" type="time"
 				pattern="h:mm a" />${formattedTime}
-			<br> <input type="submit" value="Submit">
+			<br> <input type="submit" value="Submit Updates"/>
+			
+			<button type="button" class="btn btn-outline-dark btn-small">
+			<a href="results.do?classId=${classToUpdate.id}">Delete Class ${classToUpdate.id}</a>
+		</button>
+			
 
 		</form>
 
