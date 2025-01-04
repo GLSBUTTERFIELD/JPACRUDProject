@@ -12,12 +12,9 @@
 <body>
 	<div class="container-fluid">
 		<h1>Let's update a class!</h1>
-		<button type="button" class="btn btn-outline-dark btn-small">
-			<a href="home.do">Home</a>
-		</button>
-		<button type="button" class="btn btn-outline-dark btn-small">
-			<a href="showClass.do?classId=${classToUpdate.id}">Back</a>
-		</button>
+			<a href="home.do" class="btn btn-outline-dark btn-small">Home</a>
+			<a href="showClass.do?classId=${classToUpdate.id}" class="btn btn-outline-dark btn-small">Class Details</a>
+		
 		
 		<br>
 		<form action="/updateClass.do" method="POST">
@@ -160,8 +157,8 @@
 			<br> <input type="submit" value="Submit Updates"/>
 			
 			</form>
-			<form action="/deleteClass.do" method = "POST">
-			<input type = "hidden" name="classId" value="${classToUpdate.id }">
+			<form action="/confirmDeleteClass.do" method = "GET">
+			<input type = "hidden" name="classId" value="${classToUpdate.id}">
 			<button type="submit" class="btn btn-outline-dark btn-small">
 			Delete Class ${classToUpdate.id}</button>
 		</form>

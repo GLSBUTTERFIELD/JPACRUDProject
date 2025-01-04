@@ -12,7 +12,9 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Get it girl! <button type="button" class="btn btn-outline-dark btn-small">
+		<h1>Get it girl! 
+		
+		<button type="button" class="btn btn-outline-dark btn-small">
 				<a href="addClass.do">Add a New Class</a>
 			</button></h1>
 		<div class="container">

@@ -10,7 +10,7 @@
 <jsp:include page="bootstrapHeader.jsp"></jsp:include>
 </head>
 <body>
-
+<h2>Success ${message }</h2>>
 	<div class="container-fluid">
 		<h1>Yay, you added a new class!</h1>
 		<label>Class # ${newClass.id}</label> ${newClass.type} with

@@ -66,15 +66,27 @@ public class DanceClassController {
 	}
 
 	@RequestMapping(path = "deleteClass.do", method = RequestMethod.POST)
-	public String deleteClass(Model model, @RequestParam("classId") int classId) {
+	public String deleteClass(RedirectAttributes redirectAttributes, @RequestParam("classId") int classId) {
 		boolean classDeleted = classDao.deleteById(classId);
 		if (classDeleted) {
-			model.addAttribute("message", "Class successfully deleted.");
-			return "redirect:/home.do";
+//			redirectAttributes.addFlashAttribute("message", "Class ${classDeleted.classId} successfully deleted.");
+			return "redirect:/classDeleted.do";
 		} else {
-			model.addAttribute("errorMessage","Class not found or could not be deleted.");
-			return "error";
+//			redirectAttributes.addFlashAttribute("errorMessage", "Class not found or could not be deleted.");
+			return "redirect:/error.do";
 		}
+	}
+	@RequestMapping(path="classDeleted.do", method=RequestMethod.GET)
+	public String showClassDeletedConfirmation(Model model) {
+		model.addAttribute("message", "Class successfully deleted.");
+		return "classDeleted";
+	}
+	
+	@RequestMapping(path="confirmDeleteClass.do", method=RequestMethod.GET)
+	public String confirmDeleteClass(Model model, @RequestParam("classId") int classId) {
+		DanceClass classToDelete = classDao.findById(classId);
+		model.addAttribute("classToDelete", classToDelete);
+		return "confirmDeleteClass";
 	}
 
 }
