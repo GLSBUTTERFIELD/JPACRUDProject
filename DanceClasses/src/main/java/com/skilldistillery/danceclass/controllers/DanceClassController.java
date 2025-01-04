@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelExtensionsKt;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,39 +32,41 @@ public class DanceClassController {
 	@RequestMapping(path = "showClass.do", method = RequestMethod.GET)
 	public String showClass(Model model, @RequestParam("classId") int classId) {
 		DanceClass dc = classDao.findById(classId);
+		if (dc == null) {
+			model.addAttribute("errorMessage", "Class # " + classId + " not found.");
+			return "error";
+		}
 		model.addAttribute("danceClass", dc);
 		return "classdetails";
 	}
 
 	@RequestMapping(path = "addClass.do", method = RequestMethod.GET)
-	public String navigateToAddClassJSP() {
+	public String navigateToAddClassJSP(Model model) {
+		model.addAttribute("newClass", new DanceClass());
 		return "addClass";
 	}
 
 	@RequestMapping(path = "addClass.do", method = RequestMethod.POST)
 	public String addClass(Model model, DanceClass addedClass, RedirectAttributes redir) {
-		addedClass.setLastUpdate(LocalDateTime.now());
-		
 		DanceClass newClass = classDao.createClass(addedClass);
+		addedClass.setLastUpdate(LocalDateTime.now());
 		LocalDate localDate = addedClass.getDate();
 		String formattedDate = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		String weekday = localDate.getDayOfWeek().toString();
-		addedClass.setWeekday(weekday);
+		String weekdayCapitalized = weekday.charAt(0) + weekday.substring(1).toLowerCase();
+		addedClass.setWeekday(weekdayCapitalized);
 		model.addAttribute("formattedDate", formattedDate);
-		model.addAttribute("classToUpdate", addedClass);
+		model.addAttribute("newClass", addedClass);
 
 		redir.addFlashAttribute("newClass", newClass);
 		redir.addFlashAttribute("message", "Yay, you added a new class!");
 		return "redirect:classAdded.do";
 	}
 
-	
-
 	@RequestMapping(path = "classAdded.do", method = RequestMethod.GET)
 	public String classAdded(Model model) {
-		DanceClass newClass = (DanceClass) model.asMap().get("newClass");
-		model.addAttribute("newClass", newClass);
-		model.addAttribute("message", "Yay, you added a new class!");
+		model.addAttribute("newClass", model.asMap().get("newClass"));
+		model.addAttribute("message", model.asMap().get("message"));
 		return "classAdded";
 	}
 
@@ -76,20 +79,33 @@ public class DanceClassController {
 		}
 		LocalDate localDate = classToUpdate.getDate();
 		String formattedDate = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		String weekday = localDate.getDayOfWeek().toString();
+		String weekdayCapitalized = weekday.charAt(0) + weekday.substring(1).toLowerCase();
+		classToUpdate.setWeekday(weekdayCapitalized);
 		model.addAttribute("formattedDate", formattedDate);
 		model.addAttribute("updatedClass", classToUpdate);
-	    System.out.println("Updated Class: " + classToUpdate);
+		System.out.println("Updated Class: " + classToUpdate);
 		return "updateClass";
 	}
 
 	@RequestMapping(path = "updateClass.do", method = RequestMethod.POST)
-	public String updateClass(Model model, @ModelAttribute("updatedClass") DanceClass updatedClass) {
+	public String updateClass(RedirectAttributes redir, @ModelAttribute("updatedClass") DanceClass updatedClass) {
 		int classId = updatedClass.getId();
 		DanceClass uClass = classDao.updateClass(classId, updatedClass);
-		model.addAttribute("updatedClass", uClass);
-		model.addAttribute("message", "Class updated successfully!");
+		redir.addFlashAttribute("updatedClass", uClass);
+		redir.addFlashAttribute("message", "Class updated successfully!");
+		return "redirect:classUpdated.do";
+	}
+	
+	@RequestMapping(path="classUpdated.do", method = RequestMethod.GET)
+	public String classUpdated (Model model) {
+		DanceClass updatedClass = (DanceClass) model.asMap().get("updatedClass");
+		String message = model.asMap().get("message").toString();
+		model.addAttribute("updatedClass", updatedClass);
+		model.addAttribute("message", message);
 		return "classUpdated";
 	}
+	
 
 	@RequestMapping(path = "deleteClass.do", method = RequestMethod.POST)
 	public String deleteClass(RedirectAttributes redirectAttributes, @RequestParam("classId") int classId) {

@@ -40,7 +40,7 @@
 						var="formattedTime" />${formattedTime}</td>
 
 				<td>${classToDelete.instructor}</td>
-				<td>${classToDelete.interval1},${classToDelete.interval2}</td>
+				<td>${classToDelete.interval1}, ${classToDelete.interval2}</td>
 				<td><fmt:parseDate value="${classToDelete.lastUpdate}"
 						pattern="yyyy-MM-dd'T'HH:mm" var="parsedDate" type="both" /> <fmt:formatDate
 						value="${parsedDate}" var="newParsedDate" pattern="MMMM d, yyyy" />${newParsedDate}

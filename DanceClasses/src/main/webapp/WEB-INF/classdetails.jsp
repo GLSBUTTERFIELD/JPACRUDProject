@@ -10,12 +10,12 @@
 <jsp:include page="bootstrapHeader.jsp"></jsp:include>
 </head>
 <body>
-
 	<div class="container-fluid">
 		<p class=".fs-4">
-			<button type="button" class="btn btn-outline-dark btn-small">
-				<a href="home.do">Home</a>
-			</button>
+			<a href="home.do" class="btn btn-outline-dark btn-small">Home</a> <a
+				href="updateClass.do?classId=${danceClass.id }"
+				class="btn btn-outline-dark btn-small" role="button">Update or
+				Delete Class ${danceClass.id }</a>
 		</p>
 		<label>Class # ${danceClass.id}</label> <br> ${danceClass.type }
 		with ${danceClass.instructor} <br> ${danceClass.weekday}
@@ -28,21 +28,24 @@
 			value="${danceClass.startTime}" pattern="HH:mm" />
 		<fmt:formatDate type="time" value="${parsedTime}" pattern="h:mm a"
 			var="formattedTime" />${formattedTime}<br> Intervals:
-		${danceClass.interval1 }, ${danceClass.interval2}<br> <img
-			alt="${danceClass.instructor} image"
-			src="${danceClass.instructorImageUrl}"> <br> <br> <br>
-
-
-		Last updated
+		${danceClass.interval1 }, ${danceClass.interval2}<br> 
+			Last updated
 		<fmt:parseDate value="${danceClass.lastUpdate}"
 			pattern="yyyy-MM-dd'T'HH:mm" var="parsedDate" type="both" />
 		<fmt:formatDate value="${parsedDate}" var="newParsedDate" type="date"
-			pattern="MMMM d, yyyy" />${newParsedDate} @
+			pattern="MMMM d, yyyy" />${newParsedDate}
+		@
 		<fmt:formatDate value="${parsedDate}" var="formattedTime" type="time"
 			pattern="h:mm a" />${formattedTime}<br>
-		<button type="button" class="btn btn-outline-dark btn-small">
-			<a href="updateClass.do?classId=${danceClass.id}">Update or Delete Class</a>
-		</button>
+		
+		
+		
+		<img
+			alt="${danceClass.instructor} image"
+			src="${danceClass.instructorImageUrl}"> <br> <br> <br>
+
+	
+
 
 	</div>
 	<jsp:include page="bootstrapFooter.jsp"></jsp:include>
