@@ -19,7 +19,7 @@
 			var="parsedDate" type="date" />
 		<fmt:formatDate value="${parsedDate}" var="newParsedDate" type="date"
 			pattern="MMMM d, yyyy" />${newParsedDate}
-		@ ${newClass.startTime } <br> ${newClass.intervals }
+		@ ${newClass.startTime } <br> ${newClass.interval1}, ${newClass.interval2}
 		${newClass.lastUpdate } <img alt="${newClass.instructor} image"
 			src="${newClass.instructorImageUrl}">
 
@@ -30,7 +30,7 @@
 			var="parsedDate" type="date" />
 		<fmt:formatDate value="${parsedDate}" var="newParsedDate" type="date"
 			pattern="MMMM d, yyyy" />${newParsedDate}
-		@ ${updatedClass.startTime } <br> ${updatedClass.intervals }
+		@ ${updatedClass.startTime } <br> ${updatedClass.interval1}, ${updatedClass.interval2}
 		${updatedClass.lastUpdate } <img alt="${updatedClass.instructor} image"
 			src="${updatedClass.instructorImageUrl}">
 

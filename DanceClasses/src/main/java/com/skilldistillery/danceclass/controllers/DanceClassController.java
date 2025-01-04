@@ -1,6 +1,8 @@
 package com.skilldistillery.danceclass.controllers;
 
-import org.hibernate.internal.build.AllowSysOut;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +26,6 @@ public class DanceClassController {
 		model.addAttribute("classList", classDao.findAll());
 		return "home";
 	}
-
 	@RequestMapping(path = "showClass.do", method = RequestMethod.GET)
 	public String showClass(Model model, @RequestParam("classId") int classId) {
 		DanceClass dc = classDao.findById(classId);
@@ -53,13 +54,22 @@ public class DanceClassController {
 	@RequestMapping(path = "updateClass.do", method = RequestMethod.GET)
 	public String navigateToUpdateClassJSP(Model model, @RequestParam("classId") int classId) {
 		DanceClass classToUpdate = classDao.findById(classId); 
+		if (classToUpdate == null) {
+			model.addAttribute("errorMessage", "Class not found with Id " + classId);
+			return "error";
+		}
+		
+		LocalDate localDate = classToUpdate.getDate();
+		String formattedDate= localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		model.addAttribute("formattedDate", formattedDate);
 		model.addAttribute("classToUpdate", classToUpdate);
-		System.out.println(classToUpdate);
+		
 		return "updateClass";
 	}
 
 	@RequestMapping(path = "updateClass.do", method = RequestMethod.POST)
-	public String updateClass(Model model, @RequestParam("classId") int classId, @ModelAttribute("updatedClass") DanceClass updatedClass) {
+	public String updateClass(Model model, @ModelAttribute("updatedClass") DanceClass updatedClass) {
+		int classId = updatedClass.getId();
 		DanceClass uClass = classDao.updateClass(classId, updatedClass);
 		model.addAttribute("class", uClass);
 		return "result";
@@ -69,10 +79,8 @@ public class DanceClassController {
 	public String deleteClass(RedirectAttributes redirectAttributes, @RequestParam("classId") int classId) {
 		boolean classDeleted = classDao.deleteById(classId);
 		if (classDeleted) {
-//			redirectAttributes.addFlashAttribute("message", "Class ${classDeleted.classId} successfully deleted.");
 			return "redirect:/classDeleted.do";
 		} else {
-//			redirectAttributes.addFlashAttribute("errorMessage", "Class not found or could not be deleted.");
 			return "redirect:/error.do";
 		}
 	}

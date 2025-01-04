@@ -12,11 +12,8 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Get it girl! 
-		
-		<button type="button" class="btn btn-outline-dark btn-small">
-				<a href="addClass.do">Add a New Class</a>
-			</button></h1>
+		<h1>Get it girl! </h1>
+		<a href="addClass.do" class = "btn btn-outline-dark btn-small" role = "button">Add a New Class</a>
 		<div class="container">
 			
 			<form action="showClass.do" method="GET">
@@ -55,14 +52,9 @@
 								var="formattedTime" />${formattedTime}</td>
 
 						<td>${danceClass.instructor}</td>
-						<td><button type="button"
-								class="btn btn-outline-dark btn-small">
-								<a href="showClass.do?classId=${danceClass.id}">View Class</a>
-							</button>
-							<button type="button" class="btn btn-outline-dark btn-small">
-								<a href="updateClass.do?classId=${danceClass.id}">Update or Delete
-									Class</a>
-							</button></td>
+						<td>
+							<a href="showClass.do?classId=${danceClass.id }" class = "btn btn-outline-dark btn-small" role = "button">View Class Details</a>
+							<a href="updateClass.do?classId=${danceClass.id }" class = "btn btn-outline-dark btn-small" role = "button">Update or Delete Class</a>
 					</tr>
 				</c:forEach>
 			</tbody>
