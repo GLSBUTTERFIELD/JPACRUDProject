@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,77 +16,130 @@
 		<h1>Way to go! Let's add a new class!</h1>
 		<a href="home.do" class="btn btn-outline-dark btn-small" role="button">Home</a>
 		<br>
-		<form action="addClass.do" method="POST">
+		<form:form action="addClass.do" method="POST"
+			modelAttribute="newClass" />
+		<label><strong>Class # ${updatedClass.id}</strong></label> <br> <input
+			type="hidden" name="id" value="${newClass.id }" /> <label for="date"><strong>Date</strong></label>
+		<form:input path="date" type="date" value="${formattedDate}" />
+		<br> <label for="instructor"><strong>Instructor</strong></label>
+		<form:select path="instructor">
+			<form:option value="Allie" label="Allie" />
+			<form:option value="Emily" label="Emily" />
+			<form:option value="John" label="John" />
+			<form:option value="Julia" label="Julia" />
+			<form:option value="Kenny" label="Kenny" />
+			<form:option value="Mark" label="Mark" />
+			<form:option value="Monica" label="Monica" />
+			<form:option value="Polly" label="Polly" />
+			<form:option value="Quiana" label="Quiana" />
+			<form:option value="Sally" label="Sally" />
+		</form:select>
+		<br> <label for="type"><strong>Class Type </strong></label>
+		<form:select path="type">
+			<form:option value="SIGNATURE" label="SIGNATURE" />
+			<form:option value="BODY" label="BODY" />
+		</form:select>
 
-			<label for="date"><strong>Date</strong></label> <input type="date"
-				name="date" value="${newClass.date}" />
+		<br> <label for="startTime"><strong>Start Time:
+		</strong></label>
+		<form:input path="startTime" type="time" id="startTime" step="900"
+			value="${newClass.startTime}" />
+		<br> <label for="interval1"><strong>Interval 1:
+		</strong></label>
+		<form:select path="interval1">
+			<form:option value="arms" label="arms" />
+			<form:option value="chest" label="chest" />
+			<form:option value="back" label="back" />
+			<form:option value="core" label="core" />
+			<form:option value="glutes" label="glutes" />
+			<form:option value="legs" label="legs" />
+			<form:option value="all" label="all" />
+			<form:option value="other" label="other" />
+		</form:select>
+		<label for="interval2"><strong>Interval 2: </strong></label>
+		<form:select path="interval2">
+			<form:option value="arms" label="arms" />
+			<form:option value="chest" label="chest" />
+			<form:option value="back" label="back" />
+			<form:option value="core" label="core" />
+			<form:option value="glutes" label="glutes" />
+			<form:option value="legs" label="legs" />
+			<form:option value="all" label="all" />
+			<form:option value="other" label="other" />
+		</form:select>
 
-			<fmt:parseDate value="${newClass.date}" pattern="yyyy-MM-dd"
-				var="parsedDate" />
-			<fmt:formatDate value="${parsedDate}" var="newParsedDate"
-				pattern="MMMM d, yyyy" />
-			<label for="startTime"><strong>Start Time: </strong></label> <input
-				type="time" id="startTime" name="startTime" step="900"
-				value="${newClass.startTime}">
+		<br> Last updated
+		<fmt:parseDate value="${newClass.lastUpdate}"
+			pattern="yyyy-MM-dd'T'HH:mm" var="parsedDate" type="both" />
+		<fmt:formatDate value="${parsedDate}" var="newParsedDate" type="date"
+			pattern="MMMM d, yyyy" />${newParsedDate}
+		@
+		<fmt:formatDate value="${parsedDate}" var="formattedTime" type="time"
+			pattern="h:mm a" />${formattedTime}<br> <br> <br> <input
+			type="hidden" name="classId" value="${newClass.id}" />
+		<button type="submit" class="btn btn-outline-dark btn-small"
+			role="button">Add Class</button>
 
-			<fmt:parseDate value="${newClass.startTime}" pattern="HH:mm"
-				var="parsedTime" />
-			<fmt:formatDate type="time" value="${parsedTime}" pattern="h:mm a"
-				var="formattedTime" />${formattedTime}<br> <br> <label
-				for="instructor"><strong>Instructor</strong></label> <select
-				name="instructor" id="instructor" value="${newClass.instructor}">
-				<option value="Allie"
-					${newClass.instructor == 'Allie' ? 'selected' : ''}>Allie</option>
-				<option value="Emily"
-					${newClass.instructor == 'Emily' ? 'selected' : ''}>Emily</option>
-				<option value="John"
-					${newClass.instructor == 'John' ? 'selected' : ''}>John</option>
-				<option value="Julia"
-					${newClass.instructor == 'Julia' ? 'selected' : ''}>Julia</option>
-				<option value="Kenny"
-					${newClass.instructor == 'Kenny' ? 'selected' : ''}>Kenny</option>
-				<option value="Mark"
-					${newClass.instructor == 'Mark' ? 'selected' : ''}>Mark</option>
-				<option value="Monica"
-					${newClass.instructor == 'Monica' ? 'selected' : ''}>Monica</option>
-				<option value="Polly"
-					${newClass.instructor == 'Polly' ? 'selected' : ''}>Polly</option>
-				<option value="Quiana"
-					${newClass.instructor == 'Quiana' ? 'selected' : ''}>Quiana</option>
-				<option value="Sally"
-					${newClass.instructor == 'Sally' ? 'selected' : ''}>Sally</option>
-			</select> <br> <label for="type"><strong>Class Type</strong></label> <select
-				name="type" id="type">
-				<option value="SIGNATURE"
-					${newClass.type == 'SIGNATURE' ? 'selected' : ''}>SIGNATURE</option>
-				<option value="BODY" ${newClass.type == 'BODY' ? 'selected' : ''}>BODY</option>
-			</select> <br> <br> <label for="interval1"><strong>Interval
-					1: </strong></label><select>
-				<option value="arms">arms</option>
-				<option value="chest">chest</option>
-				<option value="back">back</option>
-				<option value="core">core</option>
-				<option value="glutes">glutes</option>
-				<option value="legs">legs</option>
-				<option value="all">all</option>
-				<option value="other">other</option>
-			</select> <label for="interval2"><strong>Interval 2: </strong></label><select>
-				<option value="arms">arms</option>
-				<option value="chest">chest</option>
-				<option value="back">back</option>
-				<option value="core">core</option>
-				<option value="glutes">glutes</option>
-				<option value="legs">legs</option>
-				<option value="all">all</option>
-				<option value="other">other</option>
-			</select> <input type="hidden" id="timestamp" name="lastUpdate"
-				value="= new SimpleDateFormat('yyyy-MM-dd HH:mm:ss').format(new Date())">
+<%-- 
 
-			<br> <br> <a href="addClass.do"
-				class="btn btn-outline-dark btn-small" role="button">Add Class</a>
-		</form>
+		<label for="date"><strong>Date</strong></label>
+		<form:input path="date" type="date" name="date"
+			value="${newClass.date}" />
 
+		<fmt:parseDate value="${newClass.date}" pattern="yyyy-MM-dd"
+			var="parsedDate" />
+		<fmt:formatDate value="${parsedDate}" var="newParsedDate"
+			pattern="MMMM d, yyyy" />
+		<label for="startTime"><strong>Start Time: </strong></label>
+		<form:input path="startTime" type="time" name="startTime" step="900"
+			value="${newClass.startTime}" />
 
+		<fmt:parseDate value="${newClass.startTime}" pattern="HH:mm"
+			var="parsedTime" />
+		<fmt:formatDate type="time" value="${parsedTime}" pattern="h:mm a"
+			var="formattedTime" />${formattedTime}<br> <br> <label
+			for="instructor"><strong>Instructor</strong></label>
+		<form:select path="instructor">
+			<form:option value="Allie" label="Allie" />
+			<form:option value="Emily" label="Emily" />
+			<form:option value="John" label="John" />
+			<form:option value="Julia" label="Julia" />
+			<form:option value="Kenny" label="Kenny" />
+			<form:option value="Mark" label="Mark" />
+			<form:option value="Monica" label="Monica" />
+			<form:option value="Polly" label="Polly" />
+			<form:option value="Quiana" label="Quiana" />
+			<form:option value="Sally" label="Sally" />
+		</form:select>
+		<br> <label for="type"><strong>Class Type</strong></label>
+		<form:select path="type">
+			<form:option value="SIGNATURE" label="SIGNATURE" />
+			<form:option value="BODY" label="BODY" />
+		</form:select>
+		<br> <br> <label for="interval1"><strong>Interval
+				1: </strong></label><select>
+			<option value="arms">arms</option>
+			<option value="chest">chest</option>
+			<option value="back">back</option>
+			<option value="core">core</option>
+			<option value="glutes">glutes</option>
+			<option value="legs">legs</option>
+			<option value="all">all</option>
+			<option value="other">other</option>
+		</select> <label for="interval2"><strong>Interval 2: </strong></label><select>
+			<option value="arms">arms</option>
+			<option value="chest">chest</option>
+			<option value="back">back</option>
+			<option value="core">core</option>
+			<option value="glutes">glutes</option>
+			<option value="legs">legs</option>
+			<option value="all">all</option>
+			<option value="other">other</option>
+		</select> <br> <br> <input type="hidden" name="classId"
+			value="${newClass.id}" />
+		<button type="submit" class="btn btn-outline-dark btn-small"
+			role="button">Add Class</button>
+		</form> --%>
 	</div>
 	<jsp:include page="bootstrapFooter.jsp"></jsp:include>
 </body>

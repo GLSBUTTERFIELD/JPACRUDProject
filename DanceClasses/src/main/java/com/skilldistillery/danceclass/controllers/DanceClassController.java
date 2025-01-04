@@ -1,6 +1,7 @@
 package com.skilldistillery.danceclass.controllers;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class DanceClassController {
 		model.addAttribute("classList", classDao.findAll());
 		return "home";
 	}
+
 	@RequestMapping(path = "showClass.do", method = RequestMethod.GET)
 	public String showClass(Model model, @RequestParam("classId") int classId) {
 		DanceClass dc = classDao.findById(classId);
@@ -37,33 +39,46 @@ public class DanceClassController {
 	public String navigateToAddClassJSP() {
 		return "addClass";
 	}
+
 	@RequestMapping(path = "addClass.do", method = RequestMethod.POST)
 	public String addClass(Model model, DanceClass addedClass, RedirectAttributes redir) {
+		addedClass.setLastUpdate(LocalDateTime.now());
+		
 		DanceClass newClass = classDao.createClass(addedClass);
+		LocalDate localDate = addedClass.getDate();
+		String formattedDate = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		String weekday = localDate.getDayOfWeek().toString();
+		addedClass.setWeekday(weekday);
+		model.addAttribute("formattedDate", formattedDate);
+		model.addAttribute("classToUpdate", addedClass);
+
 		redir.addFlashAttribute("newClass", newClass);
+		redir.addFlashAttribute("message", "Yay, you added a new class!");
 		return "redirect:classAdded.do";
 	}
 
+	
+
 	@RequestMapping(path = "classAdded.do", method = RequestMethod.GET)
 	public String classAdded(Model model) {
-		DanceClass newClass= (DanceClass)model.asMap().get("newClass");
-		model.addAttribute("class", newClass);
-		return "result";
+		DanceClass newClass = (DanceClass) model.asMap().get("newClass");
+		model.addAttribute("newClass", newClass);
+		model.addAttribute("message", "Yay, you added a new class!");
+		return "classAdded";
 	}
-	
+
 	@RequestMapping(path = "updateClass.do", method = RequestMethod.GET)
 	public String navigateToUpdateClassJSP(Model model, @RequestParam("classId") int classId) {
-		DanceClass classToUpdate = classDao.findById(classId); 
+		DanceClass classToUpdate = classDao.findById(classId);
 		if (classToUpdate == null) {
 			model.addAttribute("errorMessage", "Class not found with Id " + classId);
 			return "error";
 		}
-		
 		LocalDate localDate = classToUpdate.getDate();
-		String formattedDate= localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		String formattedDate = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		model.addAttribute("formattedDate", formattedDate);
-		model.addAttribute("classToUpdate", classToUpdate);
-		
+		model.addAttribute("updatedClass", classToUpdate);
+	    System.out.println("Updated Class: " + classToUpdate);
 		return "updateClass";
 	}
 
@@ -71,8 +86,9 @@ public class DanceClassController {
 	public String updateClass(Model model, @ModelAttribute("updatedClass") DanceClass updatedClass) {
 		int classId = updatedClass.getId();
 		DanceClass uClass = classDao.updateClass(classId, updatedClass);
-		model.addAttribute("class", uClass);
-		return "result";
+		model.addAttribute("updatedClass", uClass);
+		model.addAttribute("message", "Class updated successfully!");
+		return "classUpdated";
 	}
 
 	@RequestMapping(path = "deleteClass.do", method = RequestMethod.POST)
@@ -84,13 +100,14 @@ public class DanceClassController {
 			return "redirect:/error.do";
 		}
 	}
-	@RequestMapping(path="classDeleted.do", method=RequestMethod.GET)
+
+	@RequestMapping(path = "classDeleted.do", method = RequestMethod.GET)
 	public String showClassDeletedConfirmation(Model model) {
 		model.addAttribute("message", "Class successfully deleted.");
 		return "classDeleted";
 	}
-	
-	@RequestMapping(path="confirmDeleteClass.do", method=RequestMethod.GET)
+
+	@RequestMapping(path = "confirmDeleteClass.do", method = RequestMethod.GET)
 	public String confirmDeleteClass(Model model, @RequestParam("classId") int classId) {
 		DanceClass classToDelete = classDao.findById(classId);
 		model.addAttribute("classToDelete", classToDelete);
