@@ -3,9 +3,6 @@ package com.skilldistillery.danceclass.entities;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,7 +24,8 @@ public class DanceClass {
 	@Column(name = "start_time")
 	private LocalTime startTime;
 	private String weekday;
-	private String intervals;
+	private String interval1;
+	private String interval2;
 	@Column(name = "last_update")
 	private LocalDateTime lastUpdate;
 	@Column(name = "instructor_image_url")
@@ -84,21 +82,20 @@ public class DanceClass {
 		this.weekday = weekday;
 	}
 
-	public List<String> getIntervals() {
-		if (intervals == null || intervals.isEmpty()) {
-			return new ArrayList<>();
-		}
-		String[] individualStrings = intervals.split(",");
-		List<String> intervals = new ArrayList<>(Arrays.asList(individualStrings));
-		return intervals;
+	public String getInterval1() {
+		return interval1;
 	}
 
-	public void setIntervals(List<String> intervals) {
-		if (intervals == null || intervals.isEmpty()) {
-			this.intervals = "";
-		} else {
-			this.intervals = String.join(",", intervals);
-		}
+	public void setInterval1(String interval1) {
+		this.interval1 = interval1;
+	}
+
+	public String getInterval2() {
+		return interval2;
+	}
+
+	public void setInterval2(String interval2) {
+		this.interval2 = interval2;
 	}
 
 	public LocalDateTime getLastUpdate() {
@@ -120,8 +117,8 @@ public class DanceClass {
 	@Override
 	public String toString() {
 		return "DanceClass [id=" + id + ", date=" + date + ", type=" + type + ", instructor=" + instructor
-				+ ", startTime=" + startTime + ", weekday=" + weekday + ", intervalsAsString=" + intervals
-				+ ", lastUpdate=" + lastUpdate + ", instructorImageUrl=" + instructorImageUrl + "]";
+				+ ", startTime=" + startTime + ", weekday=" + weekday + ", interval1=" + interval1 + ", interval2="
+				+ interval2 + ", lastUpdate=" + lastUpdate + ", instructorImageUrl=" + instructorImageUrl + "]";
 	}
 
 }

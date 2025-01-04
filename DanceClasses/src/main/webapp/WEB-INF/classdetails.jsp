@@ -28,7 +28,7 @@
 			value="${danceClass.startTime}" pattern="HH:mm" />
 		<fmt:formatDate type="time" value="${parsedTime}" pattern="h:mm a"
 			var="formattedTime" />${formattedTime}<br> Intervals:
-		${danceClass.intervals }<br> <img
+		${danceClass.interval1 }, ${danceClass.interval2}<br> <img
 			alt="${danceClass.instructor} image"
 			src="${danceClass.instructorImageUrl}"> <br> <br> <br>
 

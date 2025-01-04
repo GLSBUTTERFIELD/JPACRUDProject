@@ -20,12 +20,15 @@
 		</button>
 		
 		<br>
-		<form action="result.jsp" method="POST">
+		<form action="/updateClass.do" method="POST">
 			<label><strong>Class # ${classToUpdate.id}</strong></label> <br>
+			<input type = "hidden" name = "id" value = "${classToUpdate.id }"/> 
 			<label for="date"><strong>Date</strong></label> <input type="date"
-				name="date" value="${classToUpdate.date }" /><br> <label
+				name="updatedClass.date" value="${classToUpdate.date }" />
+
+				<br> <label
 				for="instructor"><strong>Instructor</strong></label> <select
-				name="instructor">
+				name="updatedClass.instructor">
 				<option value="Allie"
 					<c:if test="${classToUpdate.instructor == 'Allie'}">selected</c:if>>Allie</option>
 				<option value="Emily"
@@ -47,48 +50,48 @@
 				<option value="Sally"
 					<c:if test="${classToUpdate.instructor == 'Sally'}">selected</c:if>>Sally</option>
 			</select> <br> <label for="type"><strong>Class Type </strong></label> <input
-				type="radio" name="type" value="SIGNATURE"
+				type="radio" name="updatedClass.type" value="SIGNATURE"
 				<c:if test="${classToUpdate.type == 'SIGNATURE'}"> checked </c:if> />
-			SIGNATURE <input type="radio" name="type" value="BODY"
+			SIGNATURE <input type="radio" name="updatedClass.type" value="BODY"
 				<c:if test="${classToUpdate.type == 'BODY'}"> checked</c:if> />
 			BODY<br> <label for="startTime"><strong>Start
-					Time: </strong></label> <input type="time" id="startTime" step="900"
+					Time: </strong></label> <input name= "updatedClass.startTime" type="time" id="startTime" step="900"
 				value="${classToUpdate.startTime}" /> <br> 
-				<label for="intervals1"><strong>Interval 1: </strong></label><select>
+				<label for="interval1"><strong>Interval 1: </strong></label><select name="updatedClass.interval1">
 				<option value="arms"
-					<c:if test="${classToUpdate.intervals.get(0) == 'arms'}">selected</c:if>>arms</option>
+					<c:if test="${classToUpdate.interval1 == 'arms'}">selected</c:if>>arms</option>
 				<option value="chest"
-					<c:if test="${classToUpdate.intervals.get(0) == 'chest'}">selected</c:if>>chest</option>
+					<c:if test="${classToUpdate.interval1 == 'chest'}">selected</c:if>>chest</option>
 				<option value="back"
-					<c:if test="${classToUpdate.intervals.get(0) == 'back'}">selected</c:if>>back</option>
+					<c:if test="${classToUpdate.interval1 == 'back'}">selected</c:if>>back</option>
 				<option value="core"
-					<c:if test="${classToUpdate.intervals.get(0) == 'core'}">selected</c:if>>core</option>
+					<c:if test="${classToUpdate.interval1 == 'core'}">selected</c:if>>core</option>
 				<option value="glutes"
-					<c:if test="${classToUpdate.intervals.get(0) == 'glutes'}">selected</c:if>>glutes</option>
+					<c:if test="${classToUpdate.interval1 == 'glutes'}">selected</c:if>>glutes</option>
 				<option value="legs"
-					<c:if test="${classToUpdate.intervals.get(0) == 'legs'}">selected</c:if>>legs</option>
+					<c:if test="${classToUpdate.interval1 == 'legs'}">selected</c:if>>legs</option>
 				<option value="all"
-					<c:if test="${classToUpdate.intervals.get(0) == 'all'}">selected</c:if>>all</option>
+					<c:if test="${classToUpdate.interval1 == 'all'}">selected</c:if>>all</option>
 				<option value="other"
-					<c:if test="${classToUpdate.intervals.get(0) == 'other'}">selected</c:if>>other</option></select>
+					<c:if test="${classToUpdate.interval1 == 'other'}">selected</c:if>>other</option></select>
 				
-			<label for="intervals2"><strong>Interval 2: </strong></label><select>
+			<label for="interval2"><strong>Interval 2: </strong></label><select name="updatedClass.interval2">
 				<option value="arms"
-					<c:if test="${classToUpdate.intervals.get(1) == 'arms'}">selected</c:if>>arms</option>
+					<c:if test="${classToUpdate.interval2 == 'arms'}">selected</c:if>>arms</option>
 				<option value="chest"
-					<c:if test="${classToUpdate.intervals.get(1) == 'chest'}">selected</c:if>>chest</option>
+					<c:if test="${classToUpdate.interval2 == 'chest'}">selected</c:if>>chest</option>
 				<option value="back"
-					<c:if test="${classToUpdate.intervals.get(1) == 'back'}">selected</c:if>>back</option>
+					<c:if test="${classToUpdate.interval2== 'back'}">selected</c:if>>back</option>
 				<option value="core"
-					<c:if test="${classToUpdate.intervals.get(1) == 'core'}">selected</c:if>>core</option>
+					<c:if test="${classToUpdate.interval2 == 'core'}">selected</c:if>>core</option>
 				<option value="glutes"
-					<c:if test="${classToUpdate.intervals.get(1) == 'glutes'}">selected</c:if>>glutes</option>
+					<c:if test="${classToUpdate.interval2 == 'glutes'}">selected</c:if>>glutes</option>
 				<option value="legs"
-					<c:if test="${classToUpdate.intervals.get(1) == 'legs'}">selected</c:if>>legs</option>
+					<c:if test="${classToUpdate.interval2== 'legs'}">selected</c:if>>legs</option>
 				<option value="all"
-					<c:if test="${classToUpdate.intervals.get(1) == 'all'}">selected</c:if>>all</option>
+					<c:if test="${classToUpdate.interval2 == 'all'}">selected</c:if>>all</option>
 				<option value="other"
-					<c:if test="${classToUpdate.intervals.get(1) == 'other'}">selected</c:if>>other</option></select>
+					<c:if test="${classToUpdate.interval2 == 'other'}">selected</c:if>>other</option></select>
 			<br>
 
 
@@ -153,13 +156,14 @@
 			@
 			<fmt:formatDate value="${parsedDate}" var="formattedTime" type="time"
 				pattern="h:mm a" />${formattedTime}<br><br>
+				
 			<br> <input type="submit" value="Submit Updates"/>
 			
-			<button type="button" class="btn btn-outline-dark btn-small">
-			<a href="deleteClass.do?classId=${classToUpdate.id}">Delete Class ${classToUpdate.id}</a>
-		</button>
-			
-
+			</form>
+			<form action="/deleteClass.do" method = "POST">
+			<input type = "hidden" name="classId" value="${classToUpdate.id }">
+			<button type="submit" class="btn btn-outline-dark btn-small">
+			Delete Class ${classToUpdate.id}</button>
 		</form>
 
 

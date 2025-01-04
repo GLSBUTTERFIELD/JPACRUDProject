@@ -64,7 +64,7 @@
 					${newClass.type == 'SIGNATURE' ? 'selected' : ''}>SIGNATURE</option>
 				<option value="BODY"
 					${newClass.type == 'BODY' ? 'selected' : ''}>BODY</option>
-			</select> <br> <br>  <label for="intervals"><strong>Interval
+			</select> <br> <br>  <label for="interval1"><strong>Interval
 					1: </strong></label><select>
 				<option value="arms">arms</option>
 				<option value="chest">chest</option>
@@ -74,7 +74,7 @@
 				<option value="legs">legs</option>
 				<option value="all">all</option>
 				<option value="other">other</option>
-			</select> <label for="intervals"><strong>Interval 2: </strong></label><select>
+			</select> <label for="interval2"><strong>Interval 2: </strong></label><select>
 				<option value="arms">arms</option>
 				<option value="chest">chest</option>
 				<option value="back">back</option>
