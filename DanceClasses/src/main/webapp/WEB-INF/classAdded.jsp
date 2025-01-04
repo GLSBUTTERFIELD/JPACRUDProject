@@ -51,7 +51,7 @@
 						var="formattedTime" />${formattedTime}</td>
 
 				<td>${newClass.instructor}</td>
-				<td>${newClass.interval1},${newClass.interval2}</td>
+				<td>${newClass.interval1}, ${newClass.interval2}</td>
 				<td><fmt:parseDate value="${newClass.lastUpdate}"
 						pattern="yyyy-MM-dd'T'HH:mm" var="parsedDate" type="both" /> <fmt:formatDate
 						value="${parsedDate}" var="newParsedDate" pattern="MMMM d, yyyy" />${newParsedDate}

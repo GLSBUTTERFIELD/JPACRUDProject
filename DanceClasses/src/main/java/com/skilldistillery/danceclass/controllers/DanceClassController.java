@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelExtensionsKt;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,13 +47,13 @@ public class DanceClassController {
 
 	@RequestMapping(path = "addClass.do", method = RequestMethod.POST)
 	public String addClass(Model model, DanceClass addedClass, RedirectAttributes redir) {
-		DanceClass newClass = classDao.createClass(addedClass);
 		addedClass.setLastUpdate(LocalDateTime.now());
 		LocalDate localDate = addedClass.getDate();
 		String formattedDate = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		String weekday = localDate.getDayOfWeek().toString();
 		String weekdayCapitalized = weekday.charAt(0) + weekday.substring(1).toLowerCase();
 		addedClass.setWeekday(weekdayCapitalized);
+		DanceClass newClass = classDao.createClass(addedClass);
 		model.addAttribute("formattedDate", formattedDate);
 		model.addAttribute("newClass", addedClass);
 
@@ -84,7 +83,6 @@ public class DanceClassController {
 		classToUpdate.setWeekday(weekdayCapitalized);
 		model.addAttribute("formattedDate", formattedDate);
 		model.addAttribute("updatedClass", classToUpdate);
-		System.out.println("Updated Class: " + classToUpdate);
 		return "updateClass";
 	}
 

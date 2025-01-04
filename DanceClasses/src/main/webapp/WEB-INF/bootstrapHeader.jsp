@@ -6,4 +6,4 @@
 	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
 	crossorigin="anonymous">
 	
-<link href="css/main.css" rel="stylesheet">
+<link href="css/main.css" type="text/css" rel="stylesheet">
