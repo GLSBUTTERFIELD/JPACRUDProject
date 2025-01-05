@@ -13,12 +13,28 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<a href="home.do" class="btn btn-outline-dark btn-small">Home</a> <br>
+		<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+			<li class="nav-item" role="presentation"><a class="nav-link"
+				id="pills-home-tab" href="home.do" type="button" role="tab"
+				aria-controls="pills-home" aria-selected="false">Home</a></li>
+			<li class="nav-item" role="presentation"><a class="nav-link disabled"
+				id="pills-update-tab" href="updateClass.do?classId=${updatedClass.id}"
+				type="button" role="tab" aria-controls="pills-update"
+				aria-selected="false" aria-disabled="true">Update This Class</a></li>
+			<li class="nav-item" role="presentation"><a class="nav-link"
+				id="pills-delete-tab" href="confirmDeleteClass.do?classId=${updatedClass.id}"
+				type="button" role="tab" aria-controls="pills-delete"
+				aria-selected="false">Delete This Class</a></li>
+			<li class="nav-item" role="presentation"><a class="nav-link"
+				id="pills-create-tab" href="addClass.do" type="button" role="tab"
+				aria-controls="pills-create" aria-selected="false">Add A New
+					Class</a></li>
+		</ul>
 		<h1>Let's update class ${updatedClass.id}!</h1>
 		<br>
 		<form:form action="/updateClass.do?classId=${updatedClass.id}"
 			method="POST" modelAttribute="updatedClass">
-			<input type="hidden" name="id" value="${updatedClass.id }" />
+			<input type="hidden" name="id" value="${updatedClass.id}" />
 			<label for="date"><strong>Date</strong></label>
 			<form:input path="date" type="date" name="date"
 				value="${formattedDate}" />
@@ -68,7 +84,8 @@
 				<form:option value="all" label="all" />
 				<form:option value="other" label="other" />
 			</form:select>
-			<br><br>
+			<br>
+			<br>
 			Last updated
 			<fmt:parseDate value="${updatedClass.lastUpdate}"
 				pattern="yyyy-MM-dd'T'HH:mm" var="parsedDate" type="both" />
@@ -78,15 +95,13 @@
 			<fmt:formatDate value="${parsedDate}" var="formattedTime" type="time"
 				pattern="h:mm a" />${formattedTime}<br>
 			<br>
-			<button type="submit" class="btn btn-outline-dark btn-small">
-				Update Class ${updatedClass.id}</button></form:form>
-			<form action="/confirmDeleteClass.do?classId=${updatedClass.id}"
-				method="GET">
-				<input type="hidden" name="classId" value="${updatedClass.id}">
-				<button type="submit" class="btn btn-outline-dark btn-small">
-					Delete Class ${updatedClass.id}</button>
-			</form>
-
+			<div class="row">
+				<div class="col-auto">
+					<button type="submit" class="btn btn-outline-dark btn-lg">
+						Update Class ${updatedClass.id}</button>
+				</div>
+			</div>
+		</form:form>
 	</div>
 	<jsp:include page="bootstrapFooter.jsp"></jsp:include>
 </body>

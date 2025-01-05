@@ -21,7 +21,8 @@ public class DanceClassDAOImpl implements DanceClassDAO {
 	private EntityManager em;
 
 	private Map<String, String> instructorImageUrls = new HashMap<>();
-		{instructorImageUrls.put("Allie",
+	{
+		instructorImageUrls.put("Allie",
 				"https://images.squarespace-cdn.com/content/v1/650220f55ddff27452d1174d/7c7760e8-e210-4b9c-b5f8-c8cd90dc88c0/4.png?format=600w");
 		instructorImageUrls.put("Emily",
 				"https://images.squarespace-cdn.com/content/v1/650220f55ddff27452d1174d/487fef43-c1fc-495b-b117-58d73f084b73/emilydanceinstructor.png?format=600w");
@@ -41,7 +42,7 @@ public class DanceClassDAOImpl implements DanceClassDAO {
 				"https://images.squarespace-cdn.com/content/v1/650220f55ddff27452d1174d/88e82cb3-e1b9-4f9e-ad2b-55858f2e2852/Quianadanceteacher.png?format=600w");
 		instructorImageUrls.put("Sally",
 				"https://images.squarespace-cdn.com/content/v1/650220f55ddff27452d1174d/5ddfb343-0443-4e00-aff6-a471e87ce48d/sallystudioowner.png?format=600w");
-		}
+	}
 //NO transaction.begin/commit
 //NO em.close()
 
@@ -65,6 +66,10 @@ public class DanceClassDAOImpl implements DanceClassDAO {
 
 	@Override
 	public DanceClass createClass(DanceClass newClass) {
+		String instructor = newClass.getInstructor();
+		if (instructorImageUrls.containsKey(instructor)) {
+			newClass.setInstructorImageUrl(instructorImageUrls.get(instructor));
+		}
 		em.persist(newClass);
 		return newClass;
 	}
@@ -83,7 +88,9 @@ public class DanceClassDAOImpl implements DanceClassDAO {
 			managedDanceClass.setType(updatedClass.getType());
 			managedDanceClass.setInstructor(updatedClass.getInstructor());
 			managedDanceClass.setStartTime(updatedClass.getStartTime());
-			managedDanceClass.setWeekday(updatedClass.getDate().getDayOfWeek().toString());
+			String weekday = updatedClass.getDate().getDayOfWeek().toString();
+			String capitalizedWeekday = weekday.charAt(0) + weekday.substring(1).toLowerCase();
+			managedDanceClass.setWeekday(capitalizedWeekday);
 			managedDanceClass.setInterval1(updatedClass.getInterval1());
 			managedDanceClass.setInterval2(updatedClass.getInterval2());
 			managedDanceClass.setLastUpdate(LocalDateTime.now());

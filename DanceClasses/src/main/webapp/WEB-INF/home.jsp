@@ -12,7 +12,7 @@
 <jsp:include page="bootstrapHeader.jsp"></jsp:include>
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container-fluid home-page">
 	<div class="d-flex align-items-center justify-content-center"> 
 		<h1 id="site-heading">Gabby's B21 Dance Class Log</h1></div>
 	<table class="table text-center table-background">
