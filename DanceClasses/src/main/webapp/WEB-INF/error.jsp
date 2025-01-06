@@ -36,6 +36,7 @@
 			<h1 class="display-1">Uh Oh! An error occurred</h1>
 			<h1 class="display-3">${errorMessage}</h1>
 		</div>
-		<jsp:include page="bootstrapFooter.jsp"></jsp:include>
+	</div>
+	<jsp:include page="bootstrapFooter.jsp"></jsp:include>
 </body>
 </html>

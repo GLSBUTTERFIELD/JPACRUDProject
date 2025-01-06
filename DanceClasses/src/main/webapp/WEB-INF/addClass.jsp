@@ -98,7 +98,8 @@
 						</select>
 					</div>
 				</div>
-				<br><br>
+				<br>
+				<br>
 				<label for="instructor" class="form-label"> <strong>Instructor</strong>
 				</label>
 
@@ -108,15 +109,15 @@
 							<img alt="Allie image"
 								src="https://images.squarespace-cdn.com/content/v1/650220f55ddff27452d1174d/7c7760e8-e210-4b9c-b5f8-c8cd90dc88c0/4.png?format=120w"
 								class="img-fluid mb-2"> <input type="radio" id="Allie"
-								name="instructor" value="Allie" class="form-check-input" required><label
-								for="Allie">Allie</label>
+								name="instructor" value="Allie" class="form-check-input"
+								required><label for="Allie">Allie</label>
 						</div>
 						<div class="instructor-item text-center me-4">
 							<img alt="Emily image"
 								src="https://images.squarespace-cdn.com/content/v1/650220f55ddff27452d1174d/487fef43-c1fc-495b-b117-58d73f084b73/emilydanceinstructor.png?format=120w"
 								class="img-fluid mb-2"> <input type="radio" id="Emily"
-								name="instructor" value="Emily" class="form-check-input" required><label
-								for="Emily">Emily</label>
+								name="instructor" value="Emily" class="form-check-input"
+								required><label for="Emily">Emily</label>
 						</div>
 
 						<div class="instructor-item text-center me-4">
@@ -131,16 +132,16 @@
 							<img alt="Julia image"
 								src="https://images.squarespace-cdn.com/content/v1/650220f55ddff27452d1174d/72a859ff-6e8e-474f-9ff5-5b7810e9c756/juliadanceteacher.png?format=120w"
 								class="img-fluid mb-2"> <input type="radio" id="Julia"
-								name="instructor" value="Julia" class="form-check-input" required><label
-								for="Julia"> Julia </label>
+								name="instructor" value="Julia" class="form-check-input"
+								required><label for="Julia"> Julia </label>
 						</div>
 
 						<div class="instructor-item text-center me-4 kenny">
 							<img alt="Kenny image"
 								src="https://images.squarespace-cdn.com/content/v1/650220f55ddff27452d1174d/28e8df9d-bd52-477e-af1d-0929379a44a9/kennycardiodance.png?format=150w"
 								class="img-fluid mb-2"> <input type="radio" id="Kenny"
-								name="instructor" value="Kenny" class="form-check-input" required><label
-								for="Kenny"> Kenny </label>
+								name="instructor" value="Kenny" class="form-check-input"
+								required><label for="Kenny"> Kenny </label>
 						</div>
 
 						<div class="instructor-item text-center me-4">
@@ -155,32 +156,32 @@
 							<img alt="Monica image"
 								src="https://images.squarespace-cdn.com/content/v1/650220f55ddff27452d1174d/c2014138-92f5-4cf0-bb1f-f7fb5b6f5a5c/Monicadanceprofessional.png?format=120"
 								class="img-fluid mb-2"> <input type="radio" id="Monica"
-								name="instructor" value="Monica" class="form-check-input" required><label
-								for="Monica"> Monica </label>
+								name="instructor" value="Monica" class="form-check-input"
+								required><label for="Monica"> Monica </label>
 						</div>
 
 						<div class="instructor-item text-center me-4">
 							<img alt="Polly image"
 								src="https://images.squarespace-cdn.com/content/v1/650220f55ddff27452d1174d/82419392-a104-4754-bad5-d11a34d93670/Pollycardiodance.png?format=120w"
 								class="img-fluid mb-2"> <input type="radio" id="Polly"
-								name="instructor" value="Polly" class="form-check-input" required><label
-								for="Polly"> Polly </label>
+								name="instructor" value="Polly" class="form-check-input"
+								required><label for="Polly"> Polly </label>
 						</div>
 
 						<div class="instructor-item text-center me-4">
 							<img alt="Quiana image"
 								src="https://images.squarespace-cdn.com/content/v1/650220f55ddff27452d1174d/88e82cb3-e1b9-4f9e-ad2b-55858f2e2852/Quianadanceteacher.png?format=120w"
 								class="img-fluid mb-2"> <input type="radio" id="Quiana"
-								name="instructor" value="Quiana" class="form-check-input" required><label
-								for="Quiana"> Quiana </label>
+								name="instructor" value="Quiana" class="form-check-input"
+								required><label for="Quiana"> Quiana </label>
 						</div>
 
 						<div class="instructor-item text-center me-4">
 							<img alt="Sally image"
 								src="https://images.squarespace-cdn.com/content/v1/650220f55ddff27452d1174d/5ddfb343-0443-4e00-aff6-a471e87ce48d/sallystudioowner.png?format=120w"
 								class="img-fluid mb-2"> <input type="radio" id="Sally"
-								name="instructor" value="Sally" class="form-check-input" required><label
-								for="Sally"> Sally </label>
+								name="instructor" value="Sally" class="form-check-input"
+								required><label for="Sally"> Sally </label>
 						</div>
 					</div>
 				</div>
@@ -188,6 +189,7 @@
 					Add New Class</button>
 			</form:form>
 		</div>
-		<jsp:include page="bootstrapFooter.jsp"></jsp:include>
+	</div>
+	<jsp:include page="bootstrapFooter.jsp"></jsp:include>
 </body>
 </html>
