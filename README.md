@@ -10,7 +10,7 @@ This dynamic website keeps a log of dance classes attended and allows the user t
 	<li>database connection</li>
 	<li>query definition and execution with bind variables</li></ul>
 <li>MySQL Workbench</li><ul>
-	<li>schema design/<li>
+	<li>schema design</li>
 	<li>creating attributes & datatypes</li>
 	<li>inserting data</li>
 	<li>forward engineering</li></ul>
