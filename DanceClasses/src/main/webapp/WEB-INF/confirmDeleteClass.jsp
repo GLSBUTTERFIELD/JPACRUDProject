@@ -76,7 +76,7 @@
 
 		<div class="row">
 			<div class="col-auto">
-				<form:form action="/deleteClass.do" method="POST">
+				<form:form action="deleteClass.do" method="POST">
 					<input type="hidden" name="classId" value="${classToDelete.id}">
 					<button type="submit" class="btn btn-danger btn-lg my-3 mx-3">Yes,
 						Delete Class</button>

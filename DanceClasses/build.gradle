@@ -18,6 +18,13 @@ eclipse.wtp.facet {
    facet name: 'jst.web', version: '6.0'
 }
 
+war {
+  // Gradle will replace the variable archivesBaseName
+  // with our app name, as defined in settings.gradle
+  archiveFileName = "${rootProject.name}.war"
+  destinationDirectory = file("../")     // Project workspace directory
+}
+
 repositories {
 	mavenCentral()
 }

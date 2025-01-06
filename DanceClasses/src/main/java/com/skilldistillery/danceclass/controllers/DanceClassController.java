@@ -108,9 +108,9 @@ public class DanceClassController {
 	public String deleteClass(RedirectAttributes redirectAttributes, @RequestParam("classId") int classId) {
 		boolean classDeleted = classDao.deleteById(classId);
 		if (classDeleted) {
-			return "redirect:/classDeleted.do";
+			return "redirect:classDeleted.do";
 		} else {
-			return "redirect:/error.do";
+			return "redirect:error.do";
 		}
 	}
 

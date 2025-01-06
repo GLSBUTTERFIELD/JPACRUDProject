@@ -35,7 +35,7 @@
 		<div class="container text-center">
 			<h1 class="display-3">Let's update class ${updatedClass.id}!</h1>
 			<br>
-			<form:form action="/updateClass.do?classId=${updatedClass.id}"
+			<form:form action="updateClass.do?classId=${updatedClass.id}"
 				method="POST" modelAttribute="updatedClass">
 				<input type="hidden" name="id" value="${updatedClass.id}" />
 				<input type="hidden" name="lastUpdate"
