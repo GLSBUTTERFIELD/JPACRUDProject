@@ -94,16 +94,15 @@ public class DanceClassController {
 		redir.addFlashAttribute("message", "Class updated successfully!");
 		return "redirect:classUpdated.do";
 	}
-	
-	@RequestMapping(path="classUpdated.do", method = RequestMethod.GET)
-	public String classUpdated (Model model) {
+
+	@RequestMapping(path = "classUpdated.do", method = RequestMethod.GET)
+	public String classUpdated(Model model) {
 		DanceClass updatedClass = (DanceClass) model.asMap().get("updatedClass");
 		String message = model.asMap().get("message").toString();
 		model.addAttribute("updatedClass", updatedClass);
 		model.addAttribute("message", message);
 		return "classUpdated";
 	}
-	
 
 	@RequestMapping(path = "deleteClass.do", method = RequestMethod.POST)
 	public String deleteClass(RedirectAttributes redirectAttributes, @RequestParam("classId") int classId) {
@@ -124,8 +123,13 @@ public class DanceClassController {
 	@RequestMapping(path = "confirmDeleteClass.do", method = RequestMethod.GET)
 	public String confirmDeleteClass(Model model, @RequestParam("classId") int classId) {
 		DanceClass classToDelete = classDao.findById(classId);
-		model.addAttribute("classToDelete", classToDelete);
-		return "confirmDeleteClass";
+		if (classToDelete == null) {
+			model.addAttribute("errorMessage", "Class # " + classId + " not found.");
+			return "error";
+		} else {
+			model.addAttribute("classToDelete", classToDelete);
+			return "confirmDeleteClass";
+		}
 	}
 
 }

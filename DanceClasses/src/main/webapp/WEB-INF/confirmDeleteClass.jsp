@@ -32,7 +32,7 @@
 		</ul></div>
 
 	<div class="d-flex align-items-center justify-content-center my-5">
-		<h1>Are you sure you want to delete this class?</h1>
+		<h1 class="display-3">Are you sure you want to delete this class?</h1>
 	</div>
 			<div class="container text-center">
 	

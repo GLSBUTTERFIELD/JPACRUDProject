@@ -33,8 +33,8 @@
 		</ul>
 	</div>
 	<div class="container text-center">
-		<h1>${message}</h1>
-		<table class="table table-bordered table-striped table-hover">
+		<h1 class="display-3">${message}</h1><br>
+		<table class="table table-bordered table-striped">
 			<thead class="table-dark">
 				<tr>
 					<th scope="col">Class #</th>

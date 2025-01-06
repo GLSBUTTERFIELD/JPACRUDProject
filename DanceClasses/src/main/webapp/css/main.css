@@ -1,5 +1,5 @@
 body {
-	background-color: lightpink;
+	background-color: #C49CB7;
 }
 
 .form-check-inline {
@@ -22,6 +22,10 @@ body {
 	display: inline-block;
 }
 
+#typeBody {
+	text-align: left;
+}
+
 .add-class {
 	background-image:
 		url("https://images.squarespace-cdn.com/content/v1/650220f55ddff27452d1174d/3b3a1598-8358-421f-8f54-27719c09c4d7/FullSizeRender.jpeg?format=300w");
@@ -29,48 +33,36 @@ body {
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-position: center center;
-	height: 100vh;
 	background-color: rgba(0, 0, 0, 0.5);
-	color: white;
+	color: #B783A7;
 }
-
-.table-background {
-	background-color: lightpink;
-	table-cell: lightpink;
-}
-
 
 .d-flex {
 	display: flex;
-	flex-wrap: wrap; 
-	gap: 15px; 
+	flex-wrap: wrap;
+	gap: 15px;
 }
-
 
 .instructor-item {
 	display: flex;
-	flex-direction: column; 
-	align-items: right; 
-	text-align: right; 
-}
-
-
-.instructor-item label {
-	display: flex;
-	align-items: right; 
-	justify-content: right; 
-	margin-top: 5px; 
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .instructor-item img {
-	width: 100px;
+	width: 110px;
 	height: auto;
+	margin-bottom: 10px;
+}
+
+.instructor-item input[type="radio"] {
 	margin-bottom: 5px;
 }
 
-
-.instructor-item input {
-	margin-right: 5px; 
+.instructor-item label {
+	font-size: 18px;
+	margin-top: 5px;
 }
 
 .table-dark {
@@ -78,26 +70,62 @@ body {
 }
 
 html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+	margin: 0;
+	padding: 0;
+	height: 100%;
 }
 
 .home-page {
-    height: 100vh;
-    background-image: url("https://images.squarespace-cdn.com/content/v1/650220f55ddff27452d1174d/5a364b1c-042a-4c39-88b0-0610a572396a/dance+team.jpg?format=500w");
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
+	background-image:
+		url("https://images.squarespace-cdn.com/content/v1/650220f55ddff27452d1174d/184ac684-fe5a-41cc-a413-e3851e42ac67/5n3a2180+2.JPG?format=1500w");
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+}
+.home-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4); 
+  z-index: 1; 
+}
+
+.home-page .content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+}
+.home-heading {
+	font-weight: 650;
+	z-index: 2;
+	color:white;
 }
 
 .nav-item {
 	color: black;
 }
 
-.class-info{
-	font-size: 60px;
+.class-info {
+	font-size: 25px;
+}
+
+table {
+	text-align: center;
+}
+
+a.nav-link {
+	color: black;
+	text-decoration: none;
+	font-size: 18px;
+}
+
+a.nav-link disabled {
+	color: dark-grey;
 }

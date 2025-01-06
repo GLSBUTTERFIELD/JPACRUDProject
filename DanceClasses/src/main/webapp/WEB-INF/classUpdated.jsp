@@ -36,8 +36,8 @@
 		</ul>
 
 		<div class="container text-center">
-			<h1>${message}</h1>
-
+			<h1 class="display-3">${message}</h1>
+<br>
 			<table class="table table-bordered table-striped table-hover">
 				<thead class="table-dark">
 					<tr>
